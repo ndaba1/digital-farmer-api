@@ -4,7 +4,7 @@ dotenv.config();
 
 import app from "./app.js";
 import connectToDb from "./services/dbConnection.js";
-import readCsvData from "./services/dbConnection.js";
+import readCsvData from "./services/csvParse.js";
 import log from "./services/utils.js";
 
 const PORT = process.env.PORT || 9000;

@@ -1,17 +1,17 @@
-const fs = require("fs");
-const path = require("path");
-const parse = require("csv-parse");
+import fs from "fs";
+import path from "path";
+import { parse } from "csv-parse";
 
-const log = require("../services/utils");
+import log from "../services/utils.js";
+const __dirname = path.resolve();
 
 const results = [];
 
-const readCsvData = new Promise(async (resolve, reject) => {
-  await fs
-    .createReadStream(path.resolve("../data/plants_data.csv"))
+const readCsvData = new Promise((resolve, reject) => {
+  fs.createReadStream(path.resolve(__dirname, ".", "data/plants_data.csv"))
     .pipe(
       parse({
-        comments: "#",
+        comment: "#",
         columns: true,
       })
     )
@@ -24,9 +24,8 @@ const readCsvData = new Promise(async (resolve, reject) => {
     })
     .on("end", () => {
       log.debug("Done parsing CSV data...");
-      log.debug(results);
       resolve(results);
     });
 });
 
-exports = readCsvData;
+export default readCsvData;
