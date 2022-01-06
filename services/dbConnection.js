@@ -1,18 +1,25 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
+import log from "../services/utils.js";
 
 const connectToDb = new Promise((resolve, reject) => {
   mongoose.connect(
-    process.env.NEW_MONGO_URI,
-    { useNewUrlParser: true, useUnifiedTopology: true, autoIndex: false },
+    process.env.MONGO_URI,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      autoIndex: false,
+    },
     (err) => {
       if (err) reject(err);
       else {
-        console.log("Connected to DB");
+        log.debug("Connected to DB");
         resolve();
       }
     }
   );
 });
 
-exports = connectToDb;
+export default connectToDb;

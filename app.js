@@ -1,9 +1,9 @@
-const express = require("express");
-const helmet = require("helmet");
-const morgan = require("morgan");
-const cors = require("cors");
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
+import cors from "cors";
 
-const v1Router = require("./api/api.v1");
+import v1Route from "./api/api.v1.js";
 
 const app = express();
 
@@ -14,6 +14,6 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.use("/api/v1", v1Router);
+app.use("/api/v1", v1Route);
 
-exports = app;
+export default app;
