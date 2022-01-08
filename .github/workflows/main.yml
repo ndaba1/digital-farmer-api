@@ -11,6 +11,7 @@ jobs:
     env:
       CI: true
       MONGO_URI: mongodb://localhost/digitalfarmer
+      JWT_SECRET: some_jwt_secret
     strategy:
       fail-fast: true
       matrix:

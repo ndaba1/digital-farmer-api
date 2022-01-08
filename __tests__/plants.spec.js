@@ -1,11 +1,13 @@
 import request from "supertest";
 
 import app from "../app.js";
+import { loadPlantsData } from "../models/plants.model.js";
 import connectToDB, { disconnectFromDB } from "../services/dbConnection.js";
 
 describe("Test block for Plants endpoint", () => {
   beforeAll(async () => {
     await connectToDB();
+    await loadPlantsData();
   });
 
   afterAll(() => {
