@@ -35,6 +35,14 @@ function parseCSV(arr) {
 
   arr.forEach((obj) => {
     const { latinName, family, about, habitat, taxonomicTree } = obj;
+
+    const taxon = {};
+
+    taxonomicTree.split(",").forEach((str) => {
+      const data = str.split(":");
+      taxon[data[0]] = data[1];
+    });
+
     const parsedObject = {
       commonName: obj["commonName"],
       latinName,
@@ -47,7 +55,7 @@ function parseCSV(arr) {
       uses: obj.uses.split(","),
       requirements: obj.requirements.split(","),
       habitat,
-      taxonomicTree,
+      taxonomicTree: taxon,
     };
     parsedData.push(parsedObject);
   });

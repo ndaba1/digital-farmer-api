@@ -12,6 +12,9 @@ const PlantSchema = mongoose.Schema(
       required: true,
       index: true,
     },
+    family: {},
+    aliases: Array,
+    about: String,
     pests: {
       type: Array,
     },
@@ -28,6 +31,8 @@ const PlantSchema = mongoose.Schema(
     requirements: {
       type: Array,
     },
+    habitat: String,
+    taxonomicTree: Object,
   },
   { timestamps: true }
 );
