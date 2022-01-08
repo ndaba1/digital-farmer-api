@@ -1,6 +1,7 @@
 import Plants from "./plants.schema.js";
 
 import { getDisease } from "./diseases.model.js";
+import readCsvData from "../services/csvParse.js";
 
 // export async function getPlantById(id) {
 //   const plant = await Plants.findById(id);
@@ -35,4 +36,14 @@ export async function getPlantDiseases(id) {
   });
 
   return data;
+}
+
+export async function loadPlantsData() {
+  readCsvData.then((data) => {
+    data.forEach(async (datum) => {
+      await Plants.findOneAndUpdate({ commonName: datum.commonName }, datum, {
+        upsert: true,
+      });
+    });
+  });
 }

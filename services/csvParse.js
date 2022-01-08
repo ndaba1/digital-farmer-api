@@ -8,7 +8,7 @@ const __dirname = path.resolve();
 const results = [];
 
 const readCsvData = new Promise((resolve, reject) => {
-  fs.createReadStream(path.resolve(__dirname, ".", "data/book_one_fixed.csv"))
+  fs.createReadStream(path.resolve(__dirname, ".", "data/mock_data.csv"))
     .pipe(
       parse({
         comment: "#",
@@ -25,8 +25,8 @@ const readCsvData = new Promise((resolve, reject) => {
     .on("end", () => {
       log.debug("Done parsing CSV data...");
       // log.debug(results);
-      log.debug(parseCSV(results));
-      resolve(results);
+      // log.debug(parseCSV(results));
+      resolve(parseCSV(results));
     });
 });
 
