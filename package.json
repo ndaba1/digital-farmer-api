@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js ",
     "watch": "nodemon server.js",
     "start": "node server.js"
   },
@@ -25,5 +25,9 @@
   "devDependencies": {
     "jest": "^27.4.7",
     "supertest": "^6.1.6"
+  },
+  "jest": {
+    "transform": {},
+    "testEnvironment": "node"
   }
 }
