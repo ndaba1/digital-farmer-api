@@ -5,6 +5,7 @@ const DiseaseModel = mongoose.Schema(
     name: {
       type: String,
       required: true,
+      index: true,
     },
     targets: {
       type: Array,

@@ -2,9 +2,26 @@ import Plants from "./plants.schema.js";
 
 import { getDisease } from "./diseases.model.js";
 
-export async function getPlant(id) {
-  const plant = await Plants.findById(id);
+// export async function getPlantById(id) {
+//   const plant = await Plants.findById(id);
+//   return plant;
+// }
+
+export async function getPlantByName(name) {
+  const plant = await Plants.find({
+    $or: [
+      { commonName: new RegExp(name, "i") },
+      { latinName: new RegExp(name, "i") },
+    ],
+  });
+
   return plant;
+}
+
+export async function getAllPlants() {
+  // TODO: Implement pagination
+  const plants = await Plants.find({});
+  return plants;
 }
 
 export async function getPlantDiseases(id) {

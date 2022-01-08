@@ -5,10 +5,12 @@ const PlantSchema = mongoose.Schema(
     commonName: {
       type: String,
       required: true,
+      index: true,
     },
     latinName: {
       type: String,
       required: true,
+      index: true,
     },
     pests: {
       type: Array,
@@ -20,9 +22,12 @@ const PlantSchema = mongoose.Schema(
     sampleImages: {
       type: Array,
     },
-    uses: String,
-    history: String,
-    requirements: String,
+    uses: {
+      type: Array,
+    },
+    requirements: {
+      type: Array,
+    },
   },
   { timestamps: true }
 );
