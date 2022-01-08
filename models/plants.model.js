@@ -39,11 +39,14 @@ export async function getPlantDiseases(id) {
 }
 
 export async function loadPlantsData() {
-  readCsvData.then((data) => {
+  return new Promise(async (resolve, reject) => {
+    const data = await readCsvData();
+
     data.forEach(async (datum) => {
       await Plants.findOneAndUpdate({ commonName: datum.commonName }, datum, {
         upsert: true,
       });
     });
+    resolve();
   });
 }
