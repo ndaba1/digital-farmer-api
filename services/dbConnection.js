@@ -24,4 +24,8 @@ function connectToDb() {
   });
 }
 
+export async function disconnectFromDB() {
+  await mongoose.disconnect();
+}
+
 export default connectToDb;
