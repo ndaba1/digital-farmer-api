@@ -28,10 +28,28 @@ export async function verifyToken(req, res, next) {
 
   jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
     if (error) {
-      log.debug(error);
-      return res.status(401).json({ msg: "Token is invalid" });
+      return res.status(401).json({ msg: "There's an error with your token" });
     }
     req.user = user;
     next();
   });
+}
+
+export async function gQLVerifyToken(ctx) {
+  const authHeader = ctx.headers["x-auth-token"];
+  if (!authHeader) throw new Error("No token present");
+
+  const token = authHeader.split(" ")[1];
+
+  if (!token) throw new Error("Token header is invalid");
+
+  let data;
+  jwt.verify(token, process.env.JWT_SECRET, (e, user) => {
+    if (e) {
+      throw new Error("There's an error with your token");
+    }
+    data = user;
+  });
+
+  return data;
 }
