@@ -24,12 +24,24 @@ describe("Test block for Plants endpoint", () => {
 
     test("It should return a plant and a 200 ok status", async () => {
       const resp = await request(app).get("/api/v1/auth/token");
-
       const token = resp.body.token;
+
       await request(app)
         .get("/api/v1/plants/alfalfa")
         .set("x-auth-token", `Bearer ${token}`)
         .expect(200);
+    });
+
+    test("It should return a paginated endpoint", async () => {
+      const resp = await request(app).get("/api/v1/auth/token");
+      const token = resp.body.token;
+
+      const result = await request(app)
+        .get("/api/v1/plants?page=2&limit=2")
+        .set("x-auth-token", `Bearer ${token}`)
+        .expect(200);
+
+      expect(result.body.length).toBe(2);
     });
   });
 });
