@@ -1,11 +1,23 @@
-import { getAllPlants } from "../../models/plants.model.js";
-// import { httpGetAllPlants } from "../../routes/v1/plants/plants.controller.js";
+import { gQLVerifyToken } from "../../middleware/token.js";
+import { getAllPlants, getPlantByName } from "../../models/plants.model.js";
 
 export default {
   Query: {
-    plants: async () => {
-      const data = await getAllPlants();
-      return data;
+    plants: async (_parent, _args, ctx, _info) => {
+      const res = await gQLVerifyToken(ctx);
+
+      if (res.verified) {
+        const data = await getAllPlants();
+        return data;
+      }
+    },
+    plant: async (_parent, args, ctx, _info) => {
+      const res = await gQLVerifyToken(ctx);
+
+      if (res.verified) {
+        const data = await getPlantByName(args.name);
+        return data;
+      }
     },
   },
 };
