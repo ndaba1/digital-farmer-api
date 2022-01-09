@@ -15,5 +15,17 @@ type Plant {
   uses: [String]
   requirements: [String]
   habitat: [String]
-  taxonomicTree: String
+  taxonomicTree: Taxonomy
+}
+
+type Taxonomy {
+  Domain: String
+  Kingdom: String
+  Phylum: String
+  SubPhylum: String
+  Class: String
+  Order: String
+  Family: String
+  Genus: String
+  Species: String
 }
