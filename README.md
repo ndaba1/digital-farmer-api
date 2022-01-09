@@ -1,13 +1,13 @@
 # The digital farmer official API
 
 <p align="center">
-<a href="https://github.com/ndaba1/digital-farmer-api/actions?query=workflow%3ACI"><img src="https://img.shields.io/github/workflow/ndaba1/digital-farmer-api/CI?style=flat-square"></a>
-<a href="https://en.wikipedia.org/wiki/Representational_state_transfer"><img src="https://img.shields.io/badge/interface-REST-brightgreen.svg?longCache=true&style=flat-square"></a>
+ ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/ndaba1/digital-farmer-api/Digital%20Farmer%20API%20CI/main)
 </p>
 
 
 You can invoke the api either via rest or graphQL from:
  `https://api.digitafarmer.com/api/v1`.
+ 
 ---
 
 ### The API can be invoked for the following reasons:
