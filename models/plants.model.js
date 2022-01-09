@@ -19,19 +19,16 @@ export async function getPlantByName(name) {
     { __v: 0, _id: 0, createdAt: 0, updatedAt: 0 }
   );
 
-  return plant;
+  return plant[0];
 }
 
-export async function getAllPlants(pagination) {
-  const skip = pagination ? pagination.skip : 0;
-  const limit = pagination ? pagination.limit : 0;
-
+export async function getAllPlants(pagination = { skip: 0, limit: 0 }) {
   const data = await Plants.find(
     {},
     { __v: 0, _id: 0, createdAt: 0, updatedAt: 0 }
   )
-    .skip(skip)
-    .limit(limit);
+    .skip(pagination.skip)
+    .limit(pagination.limit);
   return data;
 }
 
