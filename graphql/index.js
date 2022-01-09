@@ -1,8 +1,6 @@
 import path from "path";
-import url from "url";
 import { makeExecutableSchema } from "@graphql-tools/schema";
-import { loadFilesSync, loadFiles } from "@graphql-tools/load-files";
-import { mergeResolvers } from "@graphql-tools/merge";
+import { loadFilesSync } from "@graphql-tools/load-files";
 
 const __dirname = path.resolve();
 

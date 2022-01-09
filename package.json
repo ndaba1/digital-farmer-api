@@ -13,9 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "@graphql-tools/load-files": "^6.5.3",
-    "@graphql-tools/merge": "^8.2.1",
     "@graphql-tools/schema": "^8.3.1",
-    "apollo-server-express": "^3.6.1",
     "cors": "^2.8.5",
     "csv-parse": "^5.0.4",
     "dotenv": "^10.0.0",
