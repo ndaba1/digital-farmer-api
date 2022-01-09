@@ -19,7 +19,7 @@ app.use(morgan("common"));
 app.use("/api/v1", v1Route);
 
 app.use(
-  "/api/v1/query",
+  "/api/v1",
   graphqlHTTP({
     schema,
   })
