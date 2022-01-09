@@ -1,0 +1,19 @@
+type Query {
+  plants: [Plant]
+  plant(name: String): Plant
+}
+
+type Plant {
+  commonName: String
+  latinName: String
+  family: String
+  aliases: [String]
+  about: String
+  pests: [String]
+  diseases: [String]
+  sampleImages: [String]
+  uses: [String]
+  requirements: [String]
+  habitat: [String]
+  taxonomicTree: String
+}
