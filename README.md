@@ -1,7 +1,7 @@
 # The digital farmer official API
 
 <p align="center">
- ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/ndaba1/digital-farmer-api/Digital%20Farmer%20API%20CI/main)
+ <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/ndaba1/digital-farmer-api/Digital%20Farmer%20API%20CI/main">
 </p>
 
 
