@@ -23,12 +23,15 @@ export async function getPlantByName(name) {
 }
 
 export async function getAllPlants(pagination) {
+  const skip = pagination ? pagination.skip : 0;
+  const limit = pagination ? pagination.limit : 0;
+
   const data = await Plants.find(
     {},
     { __v: 0, _id: 0, createdAt: 0, updatedAt: 0 }
   )
-    .skip(pagination.skip)
-    .limit(pagination.limit);
+    .skip(skip)
+    .limit(limit);
   return data;
 }
 
