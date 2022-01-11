@@ -8,7 +8,7 @@
 
 
 ### You can invoke the api either via rest or graphQL from:
- `https://api.digitafarmer.com/api/v1`.
+ `https://api.digitafarmer.com/v1`.
  
 ---
 
@@ -30,7 +30,7 @@ POST:
 - Getting info about a given plant:
   ```
   #with REST:
-  GET `https://api.digitafarmer.com/api/v1/plants/${plant_name}`
+  GET `https://api.digitafarmer.com/v1/plants/${plant_name}`
 
   ```
 - Getting info about any given disease
