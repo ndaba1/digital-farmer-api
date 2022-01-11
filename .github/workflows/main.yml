@@ -49,7 +49,12 @@ jobs:
           echo MONGO_URI=$MONGO_KEY >> .env
       - run:  echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
       - name: Build docker image
-        run: docker build . -t $IMAGE_NAME
+        run: |
+          IMAGE_NAME=$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
+
+          echo IMAGE_NAME=$IMAGE_NAME
+
+          docker build . -t $IMAGE_NAME
       
       - name: Push image to docker hub
         run: docker push $IMAGE_NAME
