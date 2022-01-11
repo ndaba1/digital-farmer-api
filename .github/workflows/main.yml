@@ -6,8 +6,6 @@ on:
   pull_request:
     branches: [main]
 
-env:
-  IMAGE_NAME: vndaba/digital-farmer-api
 
 jobs:
   test:
@@ -39,6 +37,7 @@ jobs:
       MONGO_KEY: ${{secrets.MONGO_URI}}
       DOCKER_USER: ${{secrets.DOCKER_USER}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      IMAGE_NAME: $DOCKER_USER/digital-farmer-api
     needs: test
     runs-on: ubuntu-latest
 
@@ -48,7 +47,7 @@ jobs:
         run: |
           echo JWT_SECRET=$JWT_SKEY >> .env
           echo MONGO_URI=$MONGO_KEY >> .env
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD --password-stdin
       - name: Build docker image
         run: docker build . -t $IMAGE_NAME
       
