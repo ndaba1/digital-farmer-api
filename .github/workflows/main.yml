@@ -53,4 +53,4 @@ jobs:
         run: docker build . -t $IMAGE_NAME
       
       - name: Push image to docker hub
-        run: docker push vndaba/$IMAGE_NAME
+        run: docker push $IMAGE_NAME
