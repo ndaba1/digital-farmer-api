@@ -6,8 +6,11 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  IMAGE_NAME: vndaba/digital-farmer-api
+
 jobs:
-  build:
+  test:
     env:
       CI: true
       MONGO_URI: mongodb://localhost/digitalfarmer
@@ -29,3 +32,25 @@ jobs:
           mongodb-version: ${{ matrix.mongodb-version }}
       - run: npm install
       - run: npm test
+  
+  deploy:
+    env:
+      JWT_SKEY: ${{secrets.JWT_SECRET}}
+      MONGO_KEY: ${{secrets.MONGO_URI}}
+      DOCKER_USER: ${{secrets.DOCKER_USER}}
+      DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create env variables
+        run: |
+          echo JWT_SECRET=$JWT_SKEY >> .env
+          echo MONGO_URI=$MONGO_KEY >> .env
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build docker image
+        run: docker build . -t $IMAGE_NAME
+      
+      - name: Push image to docker hub
+        run: docker push vndaba/$IMAGE_NAME
