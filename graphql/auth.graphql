@@ -1,0 +1,7 @@
+type Query {
+  auth: Auth
+}
+
+type Auth {
+  token: String
+}
