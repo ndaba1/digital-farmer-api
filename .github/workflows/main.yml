@@ -47,7 +47,7 @@ jobs:
         run: |
           echo JWT_SECRET=$JWT_SKEY >> .env
           echo MONGO_URI=$MONGO_KEY >> .env
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD --password-stdin
+      - run:  echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u $DOCKER_USER --password-stdin
       - name: Build docker image
         run: docker build . -t $IMAGE_NAME
       
