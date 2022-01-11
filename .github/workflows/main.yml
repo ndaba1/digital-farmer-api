@@ -37,7 +37,7 @@ jobs:
       MONGO_KEY: ${{secrets.MONGO_URI}}
       DOCKER_USER: ${{secrets.DOCKER_USER}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      IMAGE_NAME: $DOCKER_USER/digital-farmer-api
+      IMAGE_NAME: ${{secrets.DOCKER_USER}}/digital-farmer-api
     needs: test
     runs-on: ubuntu-latest
 
