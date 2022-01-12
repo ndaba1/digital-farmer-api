@@ -7,9 +7,9 @@ const __dirname = path.resolve();
 
 const results = [];
 
-async function readCsvData() {
+async function readCsvData(filename) {
   return new Promise((resolve, reject) => {
-    fs.createReadStream(path.resolve(__dirname, ".", "data/mock_data.csv"))
+    fs.createReadStream(path.resolve(__dirname, ".", `data/${filename}`))
       .pipe(
         parse({
           comment: "#",
