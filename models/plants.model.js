@@ -47,7 +47,7 @@ export async function getPlantDiseases(id) {
 
 export async function loadPlantsData() {
   return new Promise(async (resolve, reject) => {
-    const data = await readCsvData();
+    const data = await readCsvData("mock_data.csv");
 
     if (!data) reject();
 

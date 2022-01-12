@@ -23,3 +23,18 @@ export async function getAllDiseases(pagination = { skip: 0, limit: 0 }) {
     .limit(pagination.limit);
   return data;
 }
+
+export async function loadDiseasesData() {
+  return new Promise(async (resolve, reject) => {
+    const data = await readCsvData("mock_data.csv");
+
+    if (!data) reject();
+
+    data.forEach(async (datum) => {
+      await Diseases.findOneAndUpdate({ commonName: datum.commonName }, datum, {
+        upsert: true,
+      });
+    });
+    resolve();
+  });
+}
