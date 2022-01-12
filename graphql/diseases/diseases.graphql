@@ -1,0 +1,17 @@
+type Query {
+  diseases: [Disease]
+  disease(name: String): Disease
+}
+
+type Disease {
+  commonName: String
+  scientificName: String
+  diseaseType: String
+  targets: [Plant]
+  vector: String
+  sampleImages: [String]
+  aliases: String
+  about: String
+  preventativeMeasures: [String]
+  control: String
+}

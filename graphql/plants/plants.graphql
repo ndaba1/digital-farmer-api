@@ -10,7 +10,7 @@ type Plant {
   aliases: [String]
   about: String
   pests: [String]
-  diseases: [String]
+  diseases: [Disease]
   sampleImages: [String]
   uses: [String]
   requirements: [String]
