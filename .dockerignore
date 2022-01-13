@@ -1,2 +1,8 @@
 node_modules
-.env
+.git
+.gitignore
+*.md
+Dockerfile
+npm-debug.log
+__tests__
+docs
