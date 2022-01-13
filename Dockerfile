@@ -2,8 +2,8 @@ FROM node:lts-alpine
 
 LABEL maintainer="vndabam@gmail.com"
 
-RUN addgroup node && adduser -S -G node node
-USER node
+RUN addgroup df && adduser -S -G df df
+USER df
 
 WORKDIR /app
 
