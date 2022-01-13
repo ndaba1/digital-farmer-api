@@ -33,8 +33,6 @@ jobs:
   
   deploy:
     env:
-      JWT_SKEY: ${{secrets.JWT_SECRET}}
-      MONGO_KEY: ${{secrets.MONGO_URI}}
       DOCKER_USER: ${{secrets.DOCKER_USER}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       IMAGE_NAME: ${{secrets.DOCKER_USER}}/digital-farmer-api
@@ -43,10 +41,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Create env variables
-        run: |
-          echo JWT_SECRET=$JWT_SKEY >> .env
-          echo MONGO_URI=$MONGO_KEY >> .env
       - run:  echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
       - name: Build docker image
         run: |
