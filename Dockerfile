@@ -2,17 +2,18 @@ FROM node:lts-alpine
 
 LABEL maintainer="vndabam@gmail.com"
 
-RUN addgroup df && adduser -S -G df df
+RUN addgroup -S df && adduser -S -G df df
+RUN mkdir /app && chown df /app
 USER df
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY package*.json ./
+COPY --chown=df:df package*.json ./
 RUN npm install 
 
-COPY . ./
+COPY --chown=df:df . ./
 
 CMD ["npm", "start"]
 
