@@ -24,11 +24,18 @@ export async function verifyToken(req, res, next) {
 
   const token = authHeader.split(" ")[1];
 
-  if (!token) return res.status(401).json({ msg: "Token header is invalid" });
+  if (!token)
+    return res
+      .status(401)
+      .json({ msg: "Token header is invalid, Expected <Bearer ${token}>" });
 
   jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
     if (error) {
-      return res.status(401).json({ msg: "There's an error with your token" });
+      return res
+        .status(401)
+        .json({
+          msg: "There's an error with your token, it has probably expired",
+        });
     }
     req.user = user;
     next();
