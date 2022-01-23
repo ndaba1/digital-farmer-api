@@ -6,7 +6,6 @@ import app from "./app.js";
 import connectToDb from "./services/dbConnection.js";
 import log from "./services/utils.js";
 import { loadPlantsData } from "./models/plants.model.js";
-// import { loadPlantsData } from "./models/plants.model.js";
 
 const PORT = process.env.PORT || 9000;
 const server = http.createServer(app);
