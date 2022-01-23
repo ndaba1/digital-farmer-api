@@ -5,3 +5,4 @@ node_modules/
 todo.txt
 
 venv
+__pycache__
