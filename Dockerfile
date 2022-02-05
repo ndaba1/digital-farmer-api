@@ -11,7 +11,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY --chown=df:df package*.json ./
-RUN npm install 
+RUN npm install --include=dev
 
 COPY --chown=df:df . ./
 
