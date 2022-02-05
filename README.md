@@ -9,14 +9,14 @@
 
 
 ### You can invoke the api either via rest or graphQL from:
- `https://api.digitafarmer.com/v1`.
+ `https://api.digitalfarmer.tech/v1`.
  
 ---
 
 ### You will need an auth token before invoking the api:
 ```
 #REST
-GET: `https://api.digitalfarmer.com/v1/auth/token`
+GET: `https://api.digitalfarmer.tech/v1/auth/token`
 
 #GraphQL
 query {
@@ -30,7 +30,7 @@ query {
 - Getting info about a given plant:
   ```
   #with REST:
-  GET `https://api.digitafarmer.com/v1/plants/${plant_name}`
+  GET `https://api.digitalfarmer.tech/v1/plants/${plant_name}`
 
   #with GraphQL
   query {
@@ -43,7 +43,7 @@ query {
 - Getting info about any given disease
   ```
   #with REST
-  GET `https://api.digitafarmer.com/v1/diseases/${disease_name}`
+  GET `https://api.digitalfarmer.tech/v1/diseases/${disease_name}`
 
   #with GraphQL
   query {
@@ -55,7 +55,7 @@ query {
 - Getting the diseases that can affect a plant
    ```
   #with REST
-  GET `https://api.digitafarmer.com/v1/plants/${plant_name}/diseases`
+  GET `https://api.digitalfarmer.tech/v1/plants/${plant_name}/diseases`
 
   #with GraphQL
   query {
@@ -69,7 +69,7 @@ query {
 - Getting the plants that a disease can affect
    ```
   #with REST
-  GET `https://api.digitafarmer.com/v1/diseases/${disease_name}/targets`
+  GET `https://api.digitalfarmer.tech/v1/diseases/${disease_name}/targets`
 
   #with GraphQL
   query {
@@ -86,4 +86,4 @@ query {
   - Get all diseases
   - and many more...
 
-Refer to the guide at https://digitalfarmer.com/developers for more info on the API and how to invoke it
+Refer to the guide at https://digitalfarmer.tech/developers for more info on the API and how to invoke it
