@@ -20,8 +20,77 @@
 **Response Body**: 
 
 ```json
-
+{
+  "commonName": "${plant_name}",
+  "about": "${plant_description}",
+  "aliases": [
+    "${plant_aliases}"
+  ],
+  "diseases": [
+    "${common_plant_diseases}"
+  ],
+  "habitat": "${plant_habitat}",
+  "latinName": "${latin_name}",
+  "pests": [
+    "${plant_pests}"
+  ],
+  "requirements": [
+    "${propagation_requirements}"
+  ],
+  "sampleImages": [
+    "${urls_to_sample_images}"
+  ],
+  "taxonomicTree": {
+    "Domain": " Eukaryota",
+    " Kingdom": " Plantae",
+    " Phylum": " Spermatophyta",
+    " Subphylum": " Angiospermae",
+    " Class": " Dicotyledonae",
+    " Order": "  Solanales",
+    " Family": " Solanaceae",
+    " Genus": " solanum",
+    " Species": " \"Solanum aethiopicum\""
+  },
+  "uses": [
+    "Edible vegetable",
+    "Animal pasture",
+    "medicinal effects"
+  ]
+}
 
 ```
 
 2. GraphQL
+
+Giving an example for graphql will be dificult and non-exhaustive since you get only what you asked for. Assumming the request query looks as follows:
+
+```graphql
+query {
+    plants {
+        commonName,
+        latinName
+    }
+}
+
+```
+
+The expected response would be as follows:
+
+```json
+{
+  "data": {
+    "plants": [
+      {
+        "commonName": "${plant_name}",
+        "latinName": "${latin_name}"
+      },
+      {
+        "commonName": "${plant_name}",
+        "latinName": "${latin_name}"
+      },
+      ...
+    ]
+  }
+}
+
+```
