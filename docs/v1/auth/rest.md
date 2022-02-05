@@ -2,7 +2,7 @@
 
 **Method**: `GET`
 
-**Endpoint**: `https://api.digitalfarmer.com/v1/auth/token`
+**Endpoint**: `https://api.digitalfarmer.tech/v1/auth/token`
 
 ### Auth required: False
 

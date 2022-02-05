@@ -2,7 +2,7 @@
 
 **Method**: `POST`
 
-**Endpoint**: `https://api.digitalfarmer.com/v1/query`
+**Endpoint**: `https://api.digitalfarmer.tech/v1/query`
 
 ### Auth required: False
 
@@ -29,3 +29,4 @@ query {
 }
 ```
 
+Any error responses will be returned in the body response by graphql. They are too general to define but the body should give you enough info to handle the exception.
