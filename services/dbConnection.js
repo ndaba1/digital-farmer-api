@@ -5,9 +5,13 @@ dotenv.config();
 import log from "../services/utils.js";
 
 function connectToDb() {
+  const DB_URI =
+    process.env.PRODUCTION == true
+      ? process.env.MONGO_URI
+      : process.env.LOCAL_MONGO_URI;
   return new Promise((resolve, reject) => {
     mongoose.connect(
-      process.env.MONGO_URI,
+      DB_URI,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
