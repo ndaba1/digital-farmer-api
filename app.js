@@ -16,10 +16,10 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.use("/api/v1", v1Route);
+app.use("/v1", v1Route);
 
 app.use(
-  "/api/v1/query",
+  "/v1/query",
   graphqlHTTP({
     schema,
   })
