@@ -1,9 +1,8 @@
 import csv
-from operator import index
-from tokenize import String
-from bs4 import BeautifulSoup
-import requests
 import urllib3
+import requests
+
+from bs4 import BeautifulSoup
 
 
 class PvScraper():
