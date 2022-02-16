@@ -17,27 +17,27 @@ describe("Test block for Plants endpoint", () => {
   describe("Test GET /plants", () => {
     test("It should respond with 401 Unauthorized status", async () => {
       await request(app)
-        .get("/api/v1/plants")
+        .get("/v1/plants")
         .expect(401)
         .expect('{"msg":"No token present"}');
     });
 
     test("It should return a plant and a 200 ok status", async () => {
-      const resp = await request(app).get("/api/v1/auth/token");
+      const resp = await request(app).get("/v1/auth/token");
       const token = resp.body.token;
 
       await request(app)
-        .get("/api/v1/plants/alfalfa")
+        .get("/v1/plants/alfalfa")
         .set("x-auth-token", `Bearer ${token}`)
         .expect(200);
     });
 
     test("It should return a paginated endpoint", async () => {
-      const resp = await request(app).get("/api/v1/auth/token");
+      const resp = await request(app).get("/v1/auth/token");
       const token = resp.body.token;
 
       const result = await request(app)
-        .get("/api/v1/plants?page=2&limit=2")
+        .get("/v1/plants?page=2&limit=2")
         .set("x-auth-token", `Bearer ${token}`)
         .expect(200);
 
