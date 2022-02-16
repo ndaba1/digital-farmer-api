@@ -11,7 +11,7 @@ function connectToDb() {
       : process.env.LOCAL_MONGO_URI;
   return new Promise((resolve, reject) => {
     mongoose.connect(
-      DB_URI,
+      process.env.MONGO_URI,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
