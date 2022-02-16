@@ -6,7 +6,7 @@ import log from "../services/utils.js";
 
 function connectToDb() {
   const DB_URI =
-    process.env.PRODUCTION == true
+    process.env.PRODUCTION == true || process.env.CI == true
       ? process.env.MONGO_URI
       : process.env.LOCAL_MONGO_URI;
   return new Promise((resolve, reject) => {
