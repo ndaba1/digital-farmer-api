@@ -6,7 +6,9 @@ export async function httpGetPlant(req, res) {
 
   if (user.verified) {
     const data = await getPlantByName(req.params.id);
-    return res.status(200).json(data);
+
+    if (data) return res.status(200).json(data);
+    return res.status(404).json({ msg: "The requested plant was not found" });
   } else {
     return res.status(400).json({ msg: "That's a bad request kemosabe" });
   }
