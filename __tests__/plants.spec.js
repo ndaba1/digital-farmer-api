@@ -32,6 +32,17 @@ describe("Test block for Plants endpoint", () => {
         .expect(200);
     });
 
+    test("It should return a 404 for a random plant name", async () => {
+      const resp = await request(app).get("/v1/auth/token");
+      const token = resp.body.token;
+
+      await request(app)
+        .get("/v1/plants/fiction")
+        .set("x-auth-token", `Bearer ${token}`)
+        .expect(404)
+        .expect('{"msg":"The requested plant was not found"}');
+    });
+
     test("It should return a paginated endpoint", async () => {
       const resp = await request(app).get("/v1/auth/token");
       const token = resp.body.token;
