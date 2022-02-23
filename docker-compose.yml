@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+    df-web:
+        build: ./
+        environment:
+            MONGO_URI: mongodb://mongo/digitalfarmer
+        container_name: df-api-server
+        hostname: df-api-server
+        ports: 
+            -9000:9000
+        networks:
+            - df-net
+        depends_on:
+            - mongo
+        restart: unless-stopped
+    
+    mongo:
+        image: mongo-4.0-xenial
+        container_name: mongo
+        volumes:
+            -data:/data/db
+        ports:
+            -27017:27017
+        networks:
+            - df-net
+        restart: unless-stopped
+
+volumes:
+    data:
+
+
+networks:
+    df-net:
+        external: true
