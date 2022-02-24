@@ -44,6 +44,10 @@ jobs:
       - run:  echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
       - name: Build docker image
         run: |
+          echo ${{github.event.head_commit.message}}
+
+          echo JWT_SECRET="$JWT_SECRET" >> .env
+
           IMAGE_NAME=$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
 
           echo IMAGE_NAME=$IMAGE_NAME
