@@ -1,4 +1,4 @@
-name: Digital Farmer API CI
+name: df-api-release-workflow
 
 on: 
   push:
@@ -79,7 +79,7 @@ jobs:
           prerelease: false
 
       - name: Upload release asset
-        uses: actions/uplod-release-asset@v1
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{secrets.github_token}}
         with:
