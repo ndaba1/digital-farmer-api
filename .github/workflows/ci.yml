@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        node-version: [16.x,]
+        node-version: ['16.13',]
         mongodb-version: ['4.4']
     runs-on: ubuntu-latest
     steps:
