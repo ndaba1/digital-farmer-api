@@ -1,0 +1,70 @@
+name: Digital Farmer API CI
+
+on: 
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+
+jobs:
+  test:
+    env:
+      CI: true
+      MONGO_URI: mongodb://localhost/digitalfarmer
+      JWT_SECRET: some_jwt_secret
+    strategy:
+      fail-fast: true
+      matrix:
+        node-version: [16.x,]
+        mongodb-version: ['4.4']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{matrix.node-version}}
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.6.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+      - run: npm install
+      - run: npm test
+  
+  deploy:
+    env:
+      DOCKER_USER: ${{secrets.DOCKER_USER}}
+      DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      IMAGE_NAME: ${{secrets.DOCKER_USER}}/digital-farmer-api
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo JWT_SECRET="$JWT_SECRET" >> .env
+
+      - name: Semver
+        id: versioning
+        uses: paulhatch/semantic-version@v4.0.2
+        with:
+          branch: main
+          tag_prefix: "v"
+          major_pattern: "BREAKING CHANGE:"
+          minor_pattern: "feat:"
+          format: "v${major}.${minor}.${patch}-prerelease${increment}"
+
+      - name: login to docker
+        uses: docker/login-action@v1
+        with:
+          username: ${{secrets.DOCKER_USER}}
+          password: ${{secrets.DOCKER_PASSWORD}}
+
+      - name: build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{env.IMAGE_NAME}}:latest,${{env.IMAGE_NAME}}:${{steps.versioning.outputs.version}}
+
+      
+
+
