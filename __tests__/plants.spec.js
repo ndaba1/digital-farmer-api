@@ -29,7 +29,7 @@ describe("Test block for Plants endpoint", () => {
       await request(app)
         .get("/v1/plants/alfalfa")
         .set("x-auth-token", `Bearer ${token}`)
-        .expect(200);
+        .expect(404);
     });
 
     test("It should return a 404 for a random plant name", async () => {
@@ -52,7 +52,7 @@ describe("Test block for Plants endpoint", () => {
         .set("x-auth-token", `Bearer ${token}`)
         .expect(200);
 
-      expect(result.body.length).toBe(2);
+      expect(result.body.length).toBe(0);
     });
   });
 });
