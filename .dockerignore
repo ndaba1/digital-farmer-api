@@ -6,3 +6,4 @@ Dockerfile
 npm-debug.log
 __tests__
 docs
+jobs
