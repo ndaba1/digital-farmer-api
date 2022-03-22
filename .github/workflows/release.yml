@@ -57,11 +57,6 @@ jobs:
           minor_pattern: "feat:"
           format: "v${major}.${minor}.${patch}"
 
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: df-api
-
       - name: Archive content
         uses: thedoctor0/zip-release@master
         with:
