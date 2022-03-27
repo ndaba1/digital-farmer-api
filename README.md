@@ -1,8 +1,10 @@
+# The official Digitalfarmer platform API
+
 <p align="center" >
     <img alt="Digitalfarmer_logo" src="./logo.png" height="70px"/>
 </p>
 
-# The official Digitalfarmer platform API
+
 
 <p align="center">
  <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/ndaba1/digital-farmer-api/Digital%20Farmer%20API%20CI/main">
