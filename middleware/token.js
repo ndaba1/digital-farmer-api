@@ -57,12 +57,15 @@ export async function gQLVerifyToken(ctx) {
 
   const token = authHeader.split(" ")[1];
 
-  if (!token) throw new Error("Token header is invalid");
+  if (!token)
+    throw new Error("Token header is invalid, Expected <Bearer ${token}>");
 
   let data;
   jwt.verify(token, process.env.JWT_SECRET, (e, user) => {
     if (e) {
-      throw new Error("There's an error with your token");
+      throw new Error(
+        "There's an error with your token, it has probably expired"
+      );
     }
     data = user;
   });
