@@ -11,7 +11,7 @@ type Disease {
   vector: String
   sampleImages: [String]
   aliases: String
-  about: String
-  preventativeMeasures: [String]
-  control: String
+  description: String
+  symptoms: [String]
+  measures: [String]
 }
