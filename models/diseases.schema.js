@@ -2,11 +2,18 @@ import mongoose from "mongoose";
 
 const DiseaseModel = mongoose.Schema(
   {
-    name: {
+    commonName: {
       type: String,
       required: true,
       index: true,
     },
+    scientificName: {
+      type: String,
+      index: true,
+    },
+    aliases: Array,
+    description: String,
+    vector: String,
     targets: {
       type: Array,
     },
