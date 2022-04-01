@@ -15,3 +15,7 @@ export default {
   debug,
   error,
 };
+
+export function preprocessName(name) {
+  return new String(name).toLowerCase().replace(" ", "_");
+}
