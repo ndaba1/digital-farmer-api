@@ -20,7 +20,7 @@
 ---
 
 ### You will need an auth token before invoking the api:
-```
+```bash
 #REST
 GET: `https://api.digitalfarmer.tech/v1/auth/token`
 
@@ -34,7 +34,7 @@ query {
 
 ### The API can be invoked for the following reasons:
 - Getting info about a given plant:
-  ```
+  ```bash
   #with REST:
   GET `https://api.digitalfarmer.tech/v1/plants/${plant_name}`
 
