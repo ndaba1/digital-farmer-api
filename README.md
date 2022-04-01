@@ -93,3 +93,17 @@ query {
   - and many more...
 
 Refer to the guide at https://digitalfarmer.tech/developers for more info on the API and how to invoke it
+
+## Docker
+
+You can pull the docker image for the api:
+
+```bash
+docker pull vndaba/digital-farmer-api
+```
+
+You will need to modify the `MONGO_URI` field in the .env file to point to your own database before running a container.
+
+## Contributing
+
+We are constantly looking to improve and expand our data collections. Contributions are welcome and highly appreciated.
