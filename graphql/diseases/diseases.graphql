@@ -10,7 +10,7 @@ type Disease {
   targets: [Plant]
   vector: String
   sampleImages: [String]
-  aliases: String
+  aliases: [String]
   description: String
   symptoms: [String]
   measures: [String]
