@@ -4,12 +4,23 @@ dotenv.config();
 
 import log from "../services/utils.js";
 
-export async function generateAccessToken() {
+export async function generateAccessToken(data) {
+  let isAdmin;
+  let methods;
+
+  if (data && data === process.env.HASH) {
+    isAdmin = true;
+    methods = ["GET", "POST"];
+  } else {
+    isAdmin = false;
+    methods = ["GET"];
+  }
+
   const token = jwt.sign(
     {
-      methods: "GET",
+      methods,
+      isAdmin,
       verified: true,
-      isAdmin: false,
     },
     process.env.JWT_SECRET,
     { expiresIn: 3600 }
@@ -31,11 +42,9 @@ export async function verifyToken(req, res, next) {
 
   jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
     if (error) {
-      return res
-        .status(401)
-        .json({
-          msg: "There's an error with your token, it has probably expired",
-        });
+      return res.status(401).json({
+        msg: "There's an error with your token, it has probably expired",
+      });
     }
     req.user = user;
     next();
