@@ -4,6 +4,7 @@ import {
   httpGetAllPlants,
   httpGetPlant,
   httpGetPlantDiseases,
+  httpPostPlant,
 } from "./plants.controller.js";
 import { verifyToken } from "../../../middleware/token.js";
 
@@ -15,7 +16,9 @@ router.get("/test", (req, res) => {
 
 router.get("/", verifyToken, httpGetAllPlants);
 
-router.get("/:id", verifyToken, httpGetPlant);
-router.get("/:id/diseases", verifyToken, httpGetPlantDiseases);
+router.get("/:name", verifyToken, httpGetPlant);
+router.get("/:name/diseases", verifyToken, httpGetPlantDiseases);
+
+router.post("/", verifyToken, httpPostPlant);
 
 export default router;
