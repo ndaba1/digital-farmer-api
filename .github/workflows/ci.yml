@@ -65,6 +65,44 @@ jobs:
           push: true
           tags: ${{env.IMAGE_NAME}}:latest,${{env.IMAGE_NAME}}:${{steps.versioning.outputs.version}}
 
-      
+  release:
+    needs: test
+    runs-on: ubuntu-latest
 
+    env:
+      IMAGE_NAME: ${{secrets.DOCKER_USER}}/digital-farmer-api
+      PROJECT_ID: ${{secrets.PROJECT_ID}}
+      JWT_SECRET: ${{secrets.JWT_SECRET}}
+      MONGO_URI: ${{secrets.MONGO_URI}}
+      HASH: ${{secrets.HASH_SECRET}}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup required env files
+        run: |
+          echo JWT_SECRET=$JWT_SECRET >> .env
+          echo MONGO_URI=$MONGO_URI >> .env
+          echo HASH=$HASH >> .env
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          service_acount_key: ${{secrets.SERVICE_ACCOUNT_KEY}}
+          project_id: ${{env.PROJECT_ID}}
+          # export_default_credentials: true
+
+      - name: Configure docker client
+        run: |
+          gcloud auth configure-docker --quiet
+
+      - name: Push Image to gcr
+        env:
+          tag_name: ${{steps.versioning.outputs.version}}
+        run: |
+          docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+          docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$tag_name
+
+          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$tag_name
 
