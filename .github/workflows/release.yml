@@ -37,6 +37,7 @@ jobs:
       PROJECT_ID: ${{secrets.PROJECT_ID}}
       JWT_SECRET: ${{secrets.JWT_SECRET}}
       MONGO_URI: ${{secrets.MONGO_URI}}
+      HASH: ${{secrets.HASH_SECRET}}
 
     needs: test
     runs-on: ubuntu-latest
@@ -46,63 +47,19 @@ jobs:
       - run: |
           echo JWT_SECRET=$JWT_SECRET >> .env
           echo MONGO_URI=$MONGO_URI >> .env
-
-      - name: Semver
-        id: versioning
-        uses: paulhatch/semantic-version@v4.0.2
-        with:
-          branch: main
-          tag_prefix: "v"
-          major_pattern: "BREAKING CHANGE:"
-          minor_pattern: "feat:"
-          format: "v${major}.${minor}.${patch}"
-
-      - name: Archive content
-        uses: thedoctor0/zip-release@master
-        with:
-          filename: df-api.zip
-
-      - name: Create release
-        id: create_release
-        if: ${{!startsWith(github.ref, 'refs/tags')}}
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{secrets.github_token}}
-        with:
-          tag_name: ${{steps.versioning.outputs.version}}
-          release_name: ${{steps.versioning.outputs.version}}
-          prerelease: false
-
-      - name: Upload release asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{secrets.github_token}}
-        with:
-          upload_url: ${{steps.create_release.outputs.upload_url}}
-          asset_path: ./df-api.zip
-          asset_name: df-api-v${{steps.versioning.outputs.version}}.zip
-          asset_content_type: application/zip
+          echo HASH=$HASH >> .env
 
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@master
         with:
           service_acount_key: ${{secrets.SERVICE_ACCOUNT_KEY}}
           project_id: ${{env.PROJECT_ID}}
-          export_default_credentials: true
 
-      - name: Configure docker client
-        run: |
-          gcloud auth configure-docker --quiet
 
-      - name: Push Image to gcr
-        env:
-          tag_name: ${{steps.versioning.outputs.version}}
-        run: |
-          docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-          docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$tag_name
+      - name: Deploy to App-Engine
+        run: gcloud app deploy --quiet --project ${{env.PROJECT_ID}} 
 
-          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$tag_name
+
       
 
 
