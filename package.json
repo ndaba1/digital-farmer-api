@@ -1,16 +1,19 @@
 {
   "name": "df-server",
   "version": "1.0.0",
-  "description": "The digital-farmer API",
+  "description": "The official Digitalfarmer platform API",
   "main": "server.js",
   "scripts": {
     "test": "jest",
     "watch": "nodemon --exec ./node_modules/.bin/babel-node server.js",
     "start": "babel-node server.js"
   },
-  "keywords": [],
+  "keywords": ["api", "digital-farmer", "farmer-api", "digital-farmer-api"],
   "author": "Victor Ndaba",
   "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@graphql-tools/load-files": "^6.5.3",
     "@graphql-tools/schema": "^8.3.1",
