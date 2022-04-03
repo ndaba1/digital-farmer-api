@@ -22,15 +22,15 @@ describe("Test block for Plants endpoint", () => {
         .expect('{"msg":"No token present"}');
     });
 
-    test("It should return a plant and a 200 ok status", async () => {
-      const resp = await request(app).get("/v1/auth/token");
-      const token = resp.body.token;
+    // test("It should return a plant and a 200 ok status", async () => {
+    //   const resp = await request(app).get("/v1/auth/token");
+    //   const token = resp.body.token;
 
-      await request(app)
-        .get("/v1/plants/alfalfa")
-        .set("x-auth-token", `Bearer ${token}`)
-        .expect(200);
-    });
+    //   await request(app)
+    //     .get("/v1/plants/alfalfa")
+    //     .set("x-auth-token", `Bearer ${token}`)
+    //     .expect(200);
+    // });
 
     test("It should return a 404 for a random plant name", async () => {
       const resp = await request(app).get("/v1/auth/token");
