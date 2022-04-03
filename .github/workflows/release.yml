@@ -46,7 +46,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup required env files
-      - run: |
+        run: |
           echo JWT_SECRET=$JWT_SECRET >> .env
           echo MONGO_URI=$MONGO_URI >> .env
           echo HASH=$HASH >> .env
