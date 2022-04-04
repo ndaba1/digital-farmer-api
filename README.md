@@ -1,7 +1,7 @@
 # The official Digitalfarmer platform API
 
 <p align="center" >
-    <img alt="Digitalfarmer_logo" src="./logo.png" height="70px"/>
+    <img alt="Digitalfarmer_logo" src="./logo.png" height="100px"/>
 </p>
 
 
