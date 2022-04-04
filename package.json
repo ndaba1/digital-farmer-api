@@ -8,7 +8,12 @@
     "watch": "nodemon --exec ./node_modules/.bin/babel-node server.js",
     "start": "babel-node server.js"
   },
-  "keywords": ["api", "digital-farmer", "farmer-api", "digital-farmer-api"],
+  "keywords": [
+    "api",
+    "digital-farmer",
+    "farmer-api",
+    "digital-farmer-api"
+  ],
   "author": "Victor Ndaba",
   "license": "MIT",
   "engines": {
@@ -17,6 +22,7 @@
   "dependencies": {
     "@graphql-tools/load-files": "^6.5.3",
     "@graphql-tools/schema": "^8.3.1",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "csv-parse": "^5.0.4",
     "dotenv": "^10.0.0",
