@@ -15,6 +15,6 @@ RUN npm install --include=dev
 
 COPY --chown=df:df . ./
 
-ENTRYPOINT [ "./start.sh" ]
+ENTRYPOINT [ "npm" , "start" ]
 
 EXPOSE 9000
