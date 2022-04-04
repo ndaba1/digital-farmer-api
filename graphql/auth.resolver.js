@@ -1,4 +1,5 @@
-import { generateAccessToken } from "../middleware/token.js";
+// import { generateAccessToken } from "../middleware/token.js";
+const { generateAccessToken } = require("../middleware/token.js");
 
 export default {
   Query: {
