@@ -1,0 +1,29 @@
+steps:
+  - name: gcr.io/cloud-builders/git
+    args:
+      - clone
+      - "https://github.com/ndaba1/digital-farmer-api.git"
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - "--tag=gcr.io/$PROJECT_ID/digital-farmer-api:$COMMIT_SHA"
+      - "."
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - "gcr.io/$PROJECT_ID/digital-farmer-api:$COMMIT_SHA"
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'digital-farmer-api'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/digital-farmer-api:$COMMIT_SHA'
+      - '--region'
+      - 'us-central1'
+    images:
+      - 'gcr.io/$PROJECT_ID/SERVICE-NAME:$COMMIT_SHA'
