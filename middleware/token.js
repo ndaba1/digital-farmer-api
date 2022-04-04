@@ -1,18 +1,18 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 dotenv.config();
 
-import log from "../services/utils.js";
+import userSchema from "../models/user.schema.js";
 
 export async function generateAccessToken(data) {
   let isAdmin;
   let methods;
 
-  if (data && data === process.env.HASH) {
-    isAdmin = true;
+  isAdmin = await isAdminUser(data);
+  if (isAdmin) {
     methods = ["GET", "POST"];
   } else {
-    isAdmin = false;
     methods = ["GET"];
   }
 
@@ -71,4 +71,17 @@ export async function gQLVerifyToken(ctx) {
   });
 
   return data;
+}
+
+async function isAdminUser(pswd) {
+  if (pswd) {
+    let admin = await userSchema.findOne({ isAdmin: true });
+    let match = await bcrypt.compare(pswd, admin.password);
+
+    if (admin && match) {
+      return true;
+    }
+  }
+
+  return false;
 }
