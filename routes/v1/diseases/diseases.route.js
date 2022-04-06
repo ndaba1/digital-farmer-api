@@ -1,11 +1,11 @@
 import express from "express";
-import { verifyToken } from "../../../middleware/token";
+import { verifyToken } from "../../../middleware/token.js";
 import {
   httpGetAllDiseases,
   httpGetDisease,
   httpGetDiseaseTargets,
   httpPostDisease,
-} from "./diseases.controller";
+} from "./diseases.controller.js";
 
 const router = express.Router();
 

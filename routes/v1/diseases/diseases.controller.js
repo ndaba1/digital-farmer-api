@@ -3,7 +3,7 @@ import {
   getDiseaseByName,
   getDiseaseTargets,
   postNewDisease,
-} from "../../../models/diseases.model";
+} from "../../../models/diseases.model.js";
 
 export async function httpGetAllDiseases(req, res) {
   const user = req.user;
