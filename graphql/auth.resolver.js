@@ -1,7 +1,6 @@
-// import { generateAccessToken } from "../middleware/token.js";
-const { generateAccessToken } = require("../middleware/token.js");
+import { generateAccessToken } from "../middleware/token.js";
 
-module.exports = {
+export default {
   Query: {
     auth: async () => {
       const token = await generateAccessToken();
