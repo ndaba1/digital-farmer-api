@@ -1,6 +1,6 @@
 import Plants from "./plants.schema.js";
 
-import { getDisease, getDiseaseByName } from "./diseases.model.js";
+import { getDiseaseByName } from "./diseases.model.js";
 import readCsvData from "../services/csvParse.js";
 import { preprocessName } from "../services/utils.js";
 
