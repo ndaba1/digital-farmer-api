@@ -1,5 +1,6 @@
 type Query {
   auth: Auth
+  adminAuth(pswd: String)
 }
 
 type Auth {
