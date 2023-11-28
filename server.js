@@ -12,7 +12,6 @@ const server = http.createServer(app);
 
 async function startServer() {
   await connectToDb();
-  await loadPlantsData();
 
   server.listen(PORT, () => {
     log.debug(`Server listening on port: ${PORT}`);

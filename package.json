@@ -2,11 +2,12 @@
   "name": "df-server",
   "version": "1.0.0",
   "description": "The official Digitalfarmer platform API",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "jest",
     "watch": "nodemon --exec ./node_modules/.bin/babel-node server.js",
-    "start": "./node_modules/.bin/babel-node server.js"
+    "start": "node server.js"
   },
   "keywords": [
     "api",
